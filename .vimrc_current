@@ -1,4 +1,4 @@
-" .vimrc file comes from https://github.com/mbrochh/vim-as-a-python-ide
+"  .vimrc file comes from https://github.com/mbrochh/vim-as-a-python-ide
 
 " Should not been deleted. Necessary for Debian
 runtime! debian.vim
@@ -6,13 +6,9 @@ runtime! debian.vim
 "Python configuration (https://www.fullstackpython.com/vim.html) :
 set encoding=utf-8
 
-" Automatic reloading of .vimrc
-"" autocmd! bufwritepost .vimrc source %
-
 " Better copy & paste
 " When you want to paste large blocks of code into vim, press F2 before you
 "paste. At the bottom you should see ``-- INSERT (paste) --``.
-
 set pastetoggle=<F2>
 set clipboard=unnamed
 
@@ -20,11 +16,13 @@ set clipboard=unnamed
 set mouse=a  " on OSX press ALT and click
 set bs=2     " make backspace behave like normal again
 
-
 " Rebind <Leader> key
 " I choose space because thomb is just on it every times
-"" let mapleader = " "
-
+" En fait, le leader key permet de créer des combinaisons
+" personnelles de touche. Par exemple, plus bas, si je presse
+" espace plus d toute la ligne est supprimée.
+let mapleader = " "
+nnoremap <leader>d dd
 
 " Bind nohl
 " Removes highlight of your last search
@@ -33,17 +31,9 @@ set bs=2     " make backspace behave like normal again
 "" vnoremap <C-n> :nohl<CR>
 "" inoremap <C-n> :nohl<CR>
 
-
-" Quicksave command
-"" noremap <C-Z> :update<CR>
-"" vnoremap <C-Z> <C-C>:update<CR>
-"" inoremap <C-Z> <C-O>:update<CR>
-
-
 " Quick quit command
 "" noremap <Leader>e :quit<CR>  " Quit current window
 "" noremap <Leader>E :qa!<CR>   " Quit all windows
-
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
@@ -52,15 +42,12 @@ set bs=2     " make backspace behave like normal again
 "" map <c-l> <c-w>l
 "" map <c-h> <c-w>h
 
-
 " easier moving between tabs
 "" map <Leader>n <esc>:tabprevious<CR>
 "" map <Leader>m <esc>:tabnext<CR>
 
-
 " map sort function to a key
 "" vnoremap <Leader>s :sort<CR>
-
 
 " easier moving of code blocks
 " Try to go into visual mode (v), thenselect several lines of code here and
@@ -99,11 +86,6 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=100
 
 
-" easier formatting of paragraphs
-"" vmap Q gq
-"" nmap Q gqap
-
-
 " Useful settings
 set history=700
 set undolevels=700
@@ -133,6 +115,9 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" ============================================================================
+" Python IDE Setup
+" ============================================================================
 
 " Setup Pathogen to manage your plugins
 " mkdir -p ~/.vim/autoload ~/.vim/bundle
@@ -141,21 +126,17 @@ set noswapfile
 call pathogen#infect()
 
 
-" ============================================================================
-" Python IDE Setup
-" ============================================================================
-
-
 " syntastic which is a syntax checker for python
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
+
+
 " powerline plugin
 " cd ~/.vim/bundle
 " git clone git://github.com/Lokaltog/vim-powerline.git
@@ -170,6 +151,10 @@ let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
+" https://dougblack.io/words/a-good-vimrc.html#ui
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
 
 " Settings for jedi-vim
 " cd ~/.vim/bundle
@@ -196,11 +181,6 @@ function! OmniPopup(action)
     return a:action
 endfunction
 
-"" inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-"" inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
+inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
-
-" Python folding
-" mkdir -p ~/.vim/ftplugin
-" wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
-"" set nofoldenable
