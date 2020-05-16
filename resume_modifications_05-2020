@@ -1,0 +1,32 @@
+Pour faire les étapes suivantes, ma source principale était la configuration de Martin Brochhaus :
+github.com/mbrochh/vim-as-a-python-ide
+
+J'ai choisi les plugins suivants :
+
+Gestion des fichiers : https://github.com/kien/ctrlp.vim.git
+Linter application : https://github.com/vim-syntastic/syntastic.git
+    -> Associé à Flake 8 installé via pip
+    = https://flake8.pycqa.org/en/latest/index.html#installation-guide
+    -> Pylint n'a pas pu être installé.
+Aucompletion : https://github.com/davidhalter/jedi-vim.git
+Amélioration des infos : https://github.com/Lokaltog/vim-powerline.git
+
+A) J'ai installé l'outil de gestion de plugin : Pathogen.
+https://github.com/tpope/vim-pathogen
+
+B) Après plusieurs tentatives avec les plugins, j'ai compris que ma version de Vim ne supportait pas Python3.
+J'ai donc désinstallé VIM, puis je l'ai compilé manuellement en ajoutant les lignes adéquates dans la configuration
+Voir ce site : https://github.com/ycm-core/YouCompleteMe/wiki/Building-Vim-from-source
+
+Attention, il vaut mieux faire la compilation en root.
+
+C) Installation des plugins.
+
+D) Changement du sheme color :
+https://github.com/morhetz/gruvbox.git
+Il faut ajouter une ligne dans le .vimrc pour qu'il fonctionne.
+
+D'autres détails dans les commentaires du fichier .vimrc
+
+Vim n'était pas compilé avec Python3 mais avec Python.
+
